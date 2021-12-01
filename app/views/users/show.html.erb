@@ -9,45 +9,53 @@
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
       <%= render 'books/index',books: @books %>
-      <h2>投稿数の前日比・前週比</h2>
-      <!--前日比-->
-      <table class = "table table-bordered">
-        <tr>
-          <th>今日の投稿数</th>
-          <th>前日の投稿数</th>
-          <th>前日比</th>
-        </tr>
-        <tr>
-          <td><%= @books.where(created_at: Date.today.all_day).count %></td>
-          <td><%= @books.where(created_at: Date.yesterday.all_day).count %></td>
-          <td><%=
-            begin
-              "#{(@books.where(created_at: Date.today.all_day).count) / (@books.where(created_at: Date.yesterday.all_day).count)*100}%"
-            rescue ZeroDivisionError
-              "-"
-            end
-          %></td>
-        </tr>
-      </table>
-      <!--前週比-->
-      <table class = "table table-bordered">
-        <tr>
-          <th>今週の投稿数</th>
-          <th>先週の投稿数</th>
-          <th>前週比</th>
-        </tr>
-        <tr>
-          <td><%= @books.this_week_posts.count %></td>
-          <td><%= @books.last_week_posts.count %></td>
-          <td><%=
-            begin
-              "#{(@books.this_week_posts.count) / (@books.last_week_posts.count)*100}%"
-            rescue ZeroDivisionError
-              "-"
-            end
-          %></td>
-        </tr>
-      </table>
+      <!--折りたたみ表示（投稿数の前日比・前週比）-->
+      <details class = "mb-4">
+        <summary class = "h4">投稿数の前日比・前週比</summary>
+        <!--前日比-->
+        <table class = "table table-bordered">
+          <tr>
+            <th>今日の投稿数</th>
+            <th>前日の投稿数</th>
+            <th>前日比</th>
+          </tr>
+          <tr>
+            <td><%= @books.where(created_at: Date.today.all_day).count %></td>
+            <td><%= @books.where(created_at: Date.yesterday.all_day).count %></td>
+            <td><%=
+              begin
+                "#{(@books.where(created_at: Date.today.all_day).count) / (@books.where(created_at: Date.yesterday.all_day).count)*100}%"
+              rescue ZeroDivisionError
+                "-"
+              end
+            %></td>
+          </tr>
+        </table>
+        <!--前週比-->
+        <table class = "table table-bordered">
+          <tr>
+            <th>今週の投稿数</th>
+            <th>先週の投稿数</th>
+            <th>前週比</th>
+          </tr>
+          <tr>
+            <td><%= @books.this_week_posts.count %></td>
+            <td><%= @books.last_week_posts.count %></td>
+            <td><%=
+              begin
+                "#{(@books.this_week_posts.count) / (@books.last_week_posts.count)*100}%"
+              rescue ZeroDivisionError
+                "-"
+              end
+            %></td>
+          </tr>
+        </table>
+      </details>
+      <!--折りたたみ表示（７日間分の投稿数）-->
+      <details class = "mb-4">
+        <summary class = "h4">７日間分の投稿数</summary>
+
+      </details>
     </div>
   </div>
 </div>
