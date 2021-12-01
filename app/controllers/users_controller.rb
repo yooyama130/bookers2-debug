@@ -5,6 +5,13 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @books = @user.books
     @new_book = Book.new
+    # グラフに送信するためのデータ生成
+    gon.data =[]
+    n = 6
+    while n >= 0 do
+     gon.data << @books.where(created_at: Date.today.days_ago(n).all_day).count
+     n -= 1
+    end
   end
 
   def index
