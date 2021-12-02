@@ -51,31 +51,35 @@
           </tr>
         </table>
       </details>
-      <!--７日間分の投稿数-->
-      <h4>７日間分の投稿数</h4>
-      <table class = "table table-bordered">
-       <tr>
-         <th>6日前</th>
-         <th>5日前</th>
-         <th>4日前</th>
-         <th>3日前</th>
-         <th>2日前</th>
-         <th>1日前</th>
-         <th>今日</th>
-       </tr>
-       <tr>
-         <td><%= @books.where(created_at: Date.today.days_ago(6).all_day).count %></td>
-         <td><%= @books.where(created_at: Date.today.days_ago(5).all_day).count %></td>
-         <td><%= @books.where(created_at: Date.today.days_ago(4).all_day).count %></td>
-         <td><%= @books.where(created_at: Date.today.days_ago(3).all_day).count %></td>
-         <td><%= @books.where(created_at: Date.today.days_ago(2).all_day).count %></td>
-         <td><%= @books.where(created_at: Date.today.days_ago(1).all_day).count %></td>
-         <td><%= @books.where(created_at: Date.today.days_ago(0).all_day).count %></td>
-       </tr>
-      </table>
-      <!--投稿数のグラフ-->
-      <canvas id="myChart" width="90" height="30"></canvas>
-      <script>draw_graph();</script>
+      <!--折りたたみ表示（７日間分の投稿数）-->
+      <details class = "mb-4 table_width">
+        <summary class = "h4">７日間分の投稿数</summary>
+        <table class = "table table-bordered">
+          <tr>
+            <th>6日前</th>
+            <th>5日前</th>
+            <th>4日前</th>
+            <th>3日前</th>
+            <th>2日前</th>
+            <th>1日前</th>
+            <th>今日</th>
+          </tr>
+          <tr>
+            <td><%= @books.where(created_at: Date.today.days_ago(6).all_day).count %></td>
+            <td><%= @books.where(created_at: Date.today.days_ago(5).all_day).count %></td>
+            <td><%= @books.where(created_at: Date.today.days_ago(4).all_day).count %></td>
+            <td><%= @books.where(created_at: Date.today.days_ago(3).all_day).count %></td>
+            <td><%= @books.where(created_at: Date.today.days_ago(2).all_day).count %></td>
+            <td><%= @books.where(created_at: Date.today.days_ago(1).all_day).count %></td>
+            <td><%= @books.where(created_at: Date.today.days_ago(0).all_day).count %></td>
+          </tr>
+        </table>
+        <!--投稿数のグラフ-->
+        <canvas id="myChart" width="90" height="30"></canvas>
+        <script>draw_graph();</script>
+      </details>
+      <!--指定した日の投稿数検索-->
+      
     </div>
   </div>
 </div>
